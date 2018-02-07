@@ -88,11 +88,18 @@ class Matrix{
         return result;
     }
     
-    //Scalar multiply
     multiply(n){
-        for(let i = 0; i < this.rows; i++){
-            for(let j = 0; j < this.cols; j++){
-                this.data[i][j] *= n;
+        if(n instanceof Matrix){
+            for (let i = 0; i < this.rows; i++){
+                for(let j = 0; j < this.cols; j++){
+                    this.data[i][j] *= n.data[i][j];
+                }
+            }
+        }else {
+            for(let i = 0; i < this.rows; i++){
+                for(let j = 0; j < this.cols; j++){
+                    this.data[i][j] *= n;
+                }
             }
         }
     }
