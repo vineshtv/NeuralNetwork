@@ -13,11 +13,15 @@ class Matrix{
     }
     
     randomise(dummy=false){
-        for(let i = 0; i < this.rows; i++){
-            for(let j = 0; j < this.cols; j++){
-                if(dummy){
+        if(dummy){
+            for(let i = 0; i < this.rows; i++){
+                for(let j = 0; j < this.cols; j++){
                     this.data[i][j] = Math.floor(Math.random() * 10);
-                }else{
+                }
+            }
+        }else{
+            for(let i = 0; i < this.rows; i++){
+                for(let j = 0; j < this.cols; j++){
                     this.data[i][j] = Math.random() * 2 - 1;
                 }
             }
