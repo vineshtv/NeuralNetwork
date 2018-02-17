@@ -12,6 +12,15 @@ class Matrix{
         }
     }
     
+    fromArray(arr){
+        let m = new Matrix(arr.length, 1);
+        for(let i = 0; i < arr.length; i++){
+            m.data[i][j] = arr[i];
+        }
+        
+        return m;
+    }
+    
     randomise(dummy=false){
         if(dummy){
             for(let i = 0; i < this.rows; i++){
