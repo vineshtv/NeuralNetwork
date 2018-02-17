@@ -12,13 +12,23 @@ class Matrix{
         }
     }
     
-    fromArray(arr){
+    static fromArray(arr){
         let m = new Matrix(arr.length, 1);
         for(let i = 0; i < arr.length; i++){
             m.data[i][j] = arr[i];
         }
         
         return m;
+    }
+    
+    toArray(){
+        let arr = [];
+        for(let i = 0; i < this.rows; i++){
+            for(let j = 0; j < this.cols; j++){
+                arr.push(this.data[i][j]);
+            }
+        }
+        return arr;
     }
     
     randomise(dummy=false){

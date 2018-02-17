@@ -19,6 +19,9 @@ class NeuralNetwork{
         
         this.bias_h = new Matrix(this.hnodes, 1);
         this.bias_o = new Matrix(this.onodes, 1);
+        
+        this.bias_h.randomise();
+        this.bias_o.randomise();
     }
     
     query(input_array){
@@ -35,6 +38,6 @@ class NeuralNetwork{
         //Activation function;
         output.apply(sigmoid);
         
-        //return ;
+        return output.toArray();
     }
 }
