@@ -1,3 +1,8 @@
+//Sigmoid function
+function sigmoid(x){
+    return 1 / (1 + Math.exp(-x));
+}
+
 class NeuralNetwork{
     constructor(input_nodes, hidden_nodes, output_nodes, learning_rate){
         this.inodes = input_nodes;
@@ -17,14 +22,19 @@ class NeuralNetwork{
     }
     
     query(input_array){
+        //Generate the hidden outputs
         let inputs = Matrix.fromArray(input_array);
-        
         let hidden = Matrix.multiply(this.wih, inputs);
-        
         hidden.add(this.bias_h);
-        
         //Activation function
+        hidden.apply(sigmoid);
         
-        return result;
+        //Generate the output from the final layer
+        let output = Matrix.multiply(this.who, hidden);
+        output.add(this.bias_o);
+        //Activation function;
+        output.apply(sigmoid);
+        
+        //return ;
     }
 }

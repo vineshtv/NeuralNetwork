@@ -113,5 +113,14 @@ class Matrix{
         }
     }
     
+    apply(func){
+        // Apply a function to every element of the matrix
+        for(let i = 0; i < this.rows; i++){
+            for(let j = 0; j < this.cols; j++){
+                let val = this.data[i][j];
+                this.data[i][j] = func(val);
+            }
+        }
+    }
     
 }
