@@ -143,6 +143,18 @@ class Matrix{
         }
     }
     
+    static map(matrix, func) {
+        let result = new Matrix(matrix.rows, matrix.cols);
+        // Apply a function to every element of matrix
+        for (let i = 0; i < matrix.rows; i++) {
+            for (let j = 0; j < matrix.cols; j++) {
+                let val = matrix.data[i][j];
+                result.data[i][j] = func(val);
+            }
+        }
+        return result;
+    }
+    
     print() {
         console.table(this.data);
     }

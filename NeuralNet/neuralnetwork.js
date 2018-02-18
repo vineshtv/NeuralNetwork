@@ -3,8 +3,12 @@ function sigmoid(x){
     return 1 / (1 + Math.exp(-x));
 }
 
+function gradient(x){
+    return x * (1 - x);
+}
+
 class NeuralNetwork{
-    constructor(input_nodes, hidden_nodes, output_nodes, learning_rate){
+    constructor(input_nodes, hidden_nodes, output_nodes, learning_rate=0.1){
         this.inodes = input_nodes;
         this.hnodes = hidden_nodes;
         this.onodes = output_nodes;
@@ -62,5 +66,27 @@ class NeuralNetwork{
         
         // Calculate the errors
         let output_errors = Matrix.subtract(targets, final_outputs);
+        
+        let hidden_errors = Matrix.multiply(this.who.transpose(), output_errors);
+        
+        let gradients = Matrix.apply(final_outputs, gradient);
+        gradients.multiply(output_errors);
+        gradients.multiply(this.lrate);
+        
+        let who_delta = Matrix.multiply(gradients, Matrix.transpose(hidden_outputs));
+        
+        let hidden_gradients = Matrix.apply(hidden_outputs, gradient);
+        hidden_gradients.multiply(hidden_errors);
+        hidden_gradients.multiply(this.lrate);
+        
+        let wih_delta = Matrix.multiply(hidden_gradients, Matrix.transpose(inputs));
+        
+        // Update the weights
+        this.who.add(who_delta);
+        this.wih.add(wih_delta);
+        
+        // Update the Biases
+        this.bias_o.add(gradients);
+        this.bias_h.add(hidden_gradients);
     }
 }
