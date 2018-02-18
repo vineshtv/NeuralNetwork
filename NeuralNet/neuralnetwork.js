@@ -40,4 +40,27 @@ class NeuralNetwork{
         
         return output.toArray();
     }
+    
+    train(input_array, target_array){
+        // Convert the inputs into matrices
+        let inputs = Matrix.fromArray(input_array);
+        let targets = Matrix.fromArray(target_array);
+        
+        let hidden_outputs = Matrix.multiply(this.wih, inputs);
+        // Add bias
+        hidden_outputs.add(this.bias_h);
+        // Apply Activation function
+        hidden_outputs.apply(sigmoid);
+        
+        
+        // Final outputs
+        let final_outputs = Matrix.multiply(this.who, hidden_outputs);
+        // Add bias
+        final_outputs.add(this.bias_o);
+        // Apply Activation function
+        final_outputs.apply(sigmoid);
+        
+        // Calculate the errors
+        let output_errors = Matrix.subtract(targets, final_outputs);
+    }
 }

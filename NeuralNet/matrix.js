@@ -15,7 +15,7 @@ class Matrix{
     static fromArray(arr){
         let m = new Matrix(arr.length, 1);
         for(let i = 0; i < arr.length; i++){
-            m.data[i][j] = arr[i];
+            m.data[i][0] = arr[i];
         }
         
         return m;
@@ -45,6 +45,16 @@ class Matrix{
                 }
             }
         }
+    }
+    
+    static subtract(a, b) {
+        let result = new Matrix(a.rows, a.cols);
+        for(let i = 0; i < result.rows; i++){
+            for (let j = 0; j < result.cols; j++){
+                result.data[i][j] = a.data[i][j] - b.data[i][j];
+            }
+        }
+        return result;
     }
     
     add(n){
@@ -131,6 +141,10 @@ class Matrix{
                 this.data[i][j] = func(val);
             }
         }
+    }
+    
+    print() {
+        console.table(this.data);
     }
     
 }
