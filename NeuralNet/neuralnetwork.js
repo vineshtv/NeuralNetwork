@@ -67,7 +67,7 @@ class NeuralNetwork{
         // Calculate the errors
         let output_errors = Matrix.subtract(targets, final_outputs);
         
-        let hidden_errors = Matrix.multiply(this.who.transpose(), output_errors);
+        let hidden_errors = Matrix.multiply(Matrix.transpose(this.who), output_errors);
         
         let gradients = Matrix.apply(final_outputs, gradient);
         gradients.multiply(output_errors);

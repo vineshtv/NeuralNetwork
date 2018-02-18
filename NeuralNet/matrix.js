@@ -143,7 +143,7 @@ class Matrix{
         }
     }
     
-    static map(matrix, func) {
+    static apply(matrix, func) {
         let result = new Matrix(matrix.rows, matrix.cols);
         // Apply a function to every element of matrix
         for (let i = 0; i < matrix.rows; i++) {
